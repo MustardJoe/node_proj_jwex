@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MustardJoe/node_proj_jwex#readme",
   "devDependencies": {
-    "cities": "^2.0.0"
+    "cities": "^2.0.0",
+    "jest": "^25.3.0"
   }
 }
