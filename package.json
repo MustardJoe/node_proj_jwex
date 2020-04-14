@@ -1,0 +1,22 @@
+{
+  "name": "node_proj_jwex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MustardJoe/node_proj_jwex.git"
+  },
+  "author": "Jon Forney (@godzillajonny)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MustardJoe/node_proj_jwex/issues"
+  },
+  "homepage": "https://github.com/MustardJoe/node_proj_jwex#readme",
+  "devDependencies": {
+    "cities": "^2.0.0"
+  }
+}
