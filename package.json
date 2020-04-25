@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   "homepage": "https://github.com/MustardJoe/node_proj_jwex#readme",
   "devDependencies": {
     "cities": "^2.0.0",
-    "jest": "^25.3.0"
+    "jest": "^25.3.0",
+    "nodemon": "^2.0.3"
   },
   "dependencies": {
     "http-status-codes": "^1.4.0"
