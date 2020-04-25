@@ -19,5 +19,8 @@
   "devDependencies": {
     "cities": "^2.0.0",
     "jest": "^25.3.0"
+  },
+  "dependencies": {
+    "http-status-codes": "^1.4.0"
   }
 }
