@@ -62,10 +62,6 @@ const port = 3000;
 // });
 // app.listen(port);
 
-const routeMap = {
-  '/': './views/index.html',
-};
-
 const getViewUrl = url => {
   console.log(`views${url}.html`);
   return `views${url}.html`;
