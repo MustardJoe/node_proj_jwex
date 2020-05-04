@@ -1,94 +1,78 @@
-const http = require('http');
-const httpStatus = require('http-status-codes');
-const fs = require('fs');
+// const port = 3000;
+// const http = require('http');
+// const httpStatusCodes = require('http-status-codes');
+// const router = require('./routes');
+// const fs = require('fs');
 
-// const app = http.createServer();
-
-const port = 3000;
-
-// const msgsMap = {
-//   '/info': '<h1>Welcome to info</h1>',
-//   '/contact': '<h1>Unwelcome to contact me</h1>',
-//   '/about': '<h1>Now you learn AbOUT me (i aint commie-nadian</h1>',
-//   '/hell': '<h1>HELL!!!! YOU ARE DAMNED I GUESS FOR COMING TO HERE</h1>',
-//   '/error': '<h1>An Error Has Occured</h1>',
+// const plainTextContentType = {
+//   'Content-Type': 'text/plain'
 // };
-
-// const routesMap = {
-//   '/': './views/index.html'
+// const htmlContentType = {
+//   'Content-Type': 'text/html'
 // };
-
-// app.on('request', (req, res) => {
-//   /* eslint-disable-next-line no-console */
-//   console.log('received an incoming request');
-//   /* eslint-disable-next-line no-console */
-//   console.log('method: ', req.method, 'url: ', req.url);
-  
-//   res.writeHead(httpStatus.OK, {
-//     'Content-Type': 'text/html'
+// const customReadFile = (file, res) => {
+//   fs.readFile(`./${file}`, (error, data) => {
+//     if(error) {
+//       /* eslint-disable-next-line no-console */
+//       console.log('This file has errors because it is sad');
+//     }
+//     res.end(data);
 //   });
+// };
 
-//   let responseMessage = '';
-//   if(routesMap[req.url]) {
-//     fs.readFile(routesMap[req.url], (error, data) => {
-//       res.write(data);
-//       res.end();
-//     });
-//   }
-//   else {
-//     if(msgsMap[req.url]) {
-//       responseMessage = msgsMap[req.url];
-      
-//     }
-//     else {
-//       responseMessage = msgsMap['/error'];
-//     }
-//     responseMessage += `
-//             available routes:
-//             '/info'
-//             '/contact'
-//             '/about'
-//             '/hell'
-//             '/error'
-//             '/'
-//     `;
-
-//     res.write(responseMessage);
-//     res.end();
-//   }
-  
-//   /* eslint-disable-next-line no-console */
-//   console.log(`Sent response message : ${responseMessage}`);
+// router.get('/', (req, res) => {
+//   console.log('main.js, in router.get', req.body);
+//   res.writeHead(httpStatusCodes.OK, htmlContentType);
+//   customReadFile('views/index.html', res);
 // });
-// app.listen(port);
 
-const getViewUrl = url => {
-  console.log(`views${url}.html`);
-  return `views${url}.html`;
-};
+// router.get('/extra', (req, res) => {
+//   res.writeHead(httpStatusCodes.OK, plainTextContentType);
+//   res.end('<h1>EXTRA EXTRA READ ALL ABOUT IT!!</h1>');
+// });
 
-http
-  .createServer((req, res) => {
-    let url = getViewUrl(req.url);
-    console.log(url);
-     
-    fs.readFile(url, (error, data) => {
-      if(error) {
-        res.writeHead(httpStatus.NOT_FOUND);
-        res.write('<h1>Sorry looser, no data for you</h1>');
+// http.createServer(router.handle).listen(port);
+
+// /* eslint-disable-next-line no-console */
+// console.log(`The server has started and is listening on port ${port}. Welcome to SkyNet.`);
+
+const port = 3000,
+  http = require('http'),
+  httpStatusCodes = require('http-status-codes'),
+  router = require('./routes'),
+  fs = require('fs'),
+  plainTextContentType = {
+    'Content-Type': 'text/plain'
+  },
+  htmlContentType = {
+    'Content-Type': 'text/html'
+  },
+  customReadFile = (file, res) => {
+    fs.readFile(`./${file}`, (errors, data) => {
+      if(errors) {
+        /* eslint-disable-next-line no-console */
+        console.log('Error reading the file...');
       }
-      else {
-        res.writeHead(httpStatus.OK, {
-          'Content-Type': 'text/html'
-        });
-        res.write(data);
-      }
-      res.end();
+      res.end(data);
     });
-    
-  })
-  .listen(port);
+  };
 
+router.get('/', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, plainTextContentType);
+  res.end('INDEX');
+});
+router.get('/index.html', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, htmlContentType);
+  customReadFile('views/index.html', res);
+});
 
+router.post('/', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, plainTextContentType);
+  res.end('POSTED');
+});
+
+http.createServer(router.handle).listen(3000);
 /* eslint-disable-next-line no-console */
-console.log(`The server has started and is listening on port ${port}. Welcome to SkyNet.`);
+console.log(`The server is listening on port number:
+ ${port}`);
+
