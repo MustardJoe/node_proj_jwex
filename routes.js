@@ -9,6 +9,12 @@ const routes = {
         'Content-Type': 'text/plain'
       });
       res.end('<h1>Welcome to the INFO Page silly mortal</h1>');
+    },
+    '/moreinfo': (req, res) => {
+      res.writeHead(httpStatus.OK, {
+        'Content-Type': 'text/html'
+      });
+      res.end('<h1 style="color:mediumvioletred;">Welcome to the MORE INFO Page silly mortal</h1>');
     }
   },
   'POST': {}
