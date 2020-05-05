@@ -1,16 +1,10 @@
 const port = 3000;
 const http = require('http');
 const httpStatusCodes = require('http-status-codes');
-const router = require('./routes');
+const router = require('./router');
 const fs = require('fs');
-
-const plainTextContentType = {
-  'Content-Type': 'text/plain'
-};
-
-const htmlContentType = {
-  'Content-Type': 'text/html'
-};
+const contentTypes = require('./contentTypes');
+const utils = require('./utils');
 
 const customReadFile = (file, res) => {
   fs.readFile(`./${file}`, (error, data) => {
