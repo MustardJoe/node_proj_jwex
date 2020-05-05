@@ -21,10 +21,11 @@ exports.handle = (req, res) => {
     }
     else {
       res.writeHead(httpStatus.NOT_FOUND, htmlContentType);
-      res.end('<h1>404 Page stupid doo doo dumb</h1>')
+      res.end('<h1>404 Page stupid doo doo dumb</h1>');
     }
   }
   catch(problem) {
+    /* eslint-disable-next-line no-console */
     console.log('Error: ', problem);
   }
 };
