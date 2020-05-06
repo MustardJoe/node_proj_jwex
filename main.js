@@ -25,6 +25,16 @@ router.get('/jonappetit.css', (req, res) => {
   utils.getFile('public/css/jonappetit.css', res);
 });
 
+router.get('/pizzaburger.jpg', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, contentTypes.jpg);
+  utils.getFile('public/assets/pizzaburger.jpg', res);
+});
+
+router.get('/godzilla.jpg', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, contentTypes.jpg);
+  utils.getFile('public/assets/godzilla.jpg', res);
+});
+
 router.post('/', (req, res) => {
   res.writeHead(httpStatusCodes.OK, contentTypes.text);
   res.end('Your data has posted (it actually has not posted, but anyway you hit a ok route');
