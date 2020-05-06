@@ -1,5 +1,5 @@
 const httpStatus = require('http-status-codes'),
-  constentTypes = require('./contentTypes'),
+  contentTypes = require('./contentTypes'),
   utils = require('./utils');
 
 const routes = {
@@ -9,10 +9,11 @@ const routes = {
 
 exports.handle = (req, res) => {
   try {
+    console.log('in router, ln12', req.method, req.url);
     routes[req.method][req.url](req, res);
   }
   catch(problem) {
-    res.writeHead(httpStatus.OK, constentTypes.html);
+    res.writeHead(httpStatus.OK, contentTypes.html);
     utils.getFile('views/error.html', res);
   }
 };

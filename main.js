@@ -6,7 +6,6 @@ const contentTypes = require('./contentTypes');
 const utils = require('./utils');
 
 router.get('/', (req, res) => {
-  console.log(req.url);
   res.writeHead(httpStatusCodes.OK, contentTypes.html);
   utils.getFile('views/index.html', res);
 });
@@ -16,11 +15,21 @@ router.get('/courses.html', (req, res) => {
   utils.getFile('views/courses.html', res);
 });
 
+router.get('/contact.html', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, contentTypes.html);
+  utils.getFile('views/contact.html', res);
+});
+
+router.get('/jonappetit.css', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, contentTypes.css);
+  utils.getFile('public/css/jonappetit.css', res);
+});
+
 router.post('/', (req, res) => {
-  res.writeHead(httpStatusCodes.OK, contentTypes);
-  res.end('Your data has posted (it actually has not posted, but anyway you his a ok route');
+  res.writeHead(httpStatusCodes.OK, contentTypes.text);
+  res.end('Your data has posted (it actually has not posted, but anyway you hit a ok route');
 });
 
 http.createServer(router.handle).listen(port);
 /* eslint-disable-next-line no-console */
-console.log(`Your server is up and running on port ${port}. Welcome to SkyNet.`);
+console.log(`The Recipe Blaster server is up and running on port ${port}. Welcome to SkyNet.`);
