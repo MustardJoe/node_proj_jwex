@@ -2,32 +2,22 @@ const port = 3000;
 const http = require('http');
 const httpStatusCodes = require('http-status-codes');
 const router = require('./router');
-const fs = require('fs');
 const contentTypes = require('./contentTypes');
 const utils = require('./utils');
 
-const customReadFile = (file, res) => {
-  fs.readFile(`./${file}`, (error, data) => {
-    if(error) {
-      /* eslint-disable-next-line no-console */
-      console.log('Error Reading File: ', error);
-    }
-    res.end(data);
-  });
-};
-
 router.get('/', (req, res) => {
-  res.writeHead(httpStatusCodes.OK, plainTextContentType);
-  res.end('INDEX, the is all that is here');
+  console.log(req.url);
+  res.writeHead(httpStatusCodes.OK, contentTypes.html);
+  utils.getFile('views/index.html', res);
 });
 
-router.get('/index.html', (req, res) => {
-  res.writeHead(httpStatusCodes.OK, htmlContentType);
-  customReadFile('views/index.html', res);
+router.get('/courses.html', (req, res) => {
+  res.writeHead(httpStatusCodes.OK, contentTypes.html);
+  utils.getFile('views/courses.html', res);
 });
 
 router.post('/', (req, res) => {
-  res.writeHead(httpStatusCodes.OK, plainTextContentType);
+  res.writeHead(httpStatusCodes.OK, contentTypes);
   res.end('Your data has posted (it actually has not posted, but anyway you his a ok route');
 });
 
